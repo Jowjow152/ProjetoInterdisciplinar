@@ -1,6 +1,9 @@
 package br.usjt.hellospringboot.model;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Time;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,8 +18,8 @@ public class Estacao implements Serializable {
 	private int id;
 	private int temperatura;
 	private int luz;
-	private String data;
-	private String hora;
+	private Date data;
+	private Time hora;
 	public int getTemperatura() {
 		return temperatura;
 	}
@@ -29,16 +32,16 @@ public class Estacao implements Serializable {
 	public void setLuz(int luz) {
 		this.luz = luz;
 	}
-	public String getData() {
+	public Date getData() {
 		return data;
 	}
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
-	public String getHora() {
+	public Time getHora() {
 		return hora;
 	}
-	public void setHora(String hora) {
+	public void setHora(Time hora) {
 		this.hora = hora;
 	}
 
