@@ -1,0 +1,117 @@
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Dados da Estação</title>
+    <div><h1 align="center"><b>Dados da estação</b></h1></div>
+</head>
+<body>
+
+	<link
+		href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		rel="stylesheet" id="bootstrap-css">
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+	<!------ Include the above in your HEAD tag ---------->
+
+	<link
+		href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+		rel="stylesheet" id="bootstrap-css">
+	<script
+		src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	
+	<canvas class="line-chart"></canvas>
+	<canvas class="line-chart2"></canvas>
+	<div>
+		<script th:inline="javascript">
+			var ctx = document.getElementsByClassName("line-chart");
+
+			var luz = [];
+			var tempo = [];
+
+			/*[# th:each="leitura : ${leituras}"]*/
+
+			tempo.push("[(${leitura.tempo.hour} + ':' + ${leitura.tempo.minute})]")
+			luz.push("[(${leitura.luz})]")
+
+			/*[/]*/
+			
+			//Type, Data e options
+			var chartGraph = new Chart(ctx, {
+				type : 'line',
+				data : {
+					labels : tempo,
+					datasets : [
+							{
+								label : "LUZ",
+								data : luz,
+								borderWidth : 4,
+								borderColor : 'rgba(6,204,6,0.85)',
+								backgroundColor : 'transparent',
+							}, ]
+				},
+				options : {
+					hover : true,
+					labels : {
+						fontStyle : "bold"
+					}
+				}
+			});
+		</script>
+	</div>
+	
+	<div><br></div>
+	
+	<div>
+		<script th:inline="javascript">
+			var ctx = document.getElementsByClassName("line-chart2");
+
+			var temperatura = [];
+			var tempo = [];
+
+			/*[# th:each="leitura : ${leituras}"]*/
+
+			tempo.push("[(${leitura.tempo.hour} + ':' + ${leitura.tempo.minute})]")
+			temperatura.push("[(${leitura.temperatura})]");
+
+			/*[/]*/
+			
+			//Type, Data e options
+			var chartGraph = new Chart(ctx, {
+				type : 'line',
+				data : {
+					labels : tempo,
+					datasets : [
+							{
+								label : "TEMPERATURA",
+								data : temperatura,
+								borderWidth : 4,
+								borderColor : 'rgba(77,166,253,0.85)',
+								backgroundColor : 'transparent'
+							},]
+				},
+				options : {
+					marginTop : true,
+					labels : {
+						fontStyle : "bold"
+					}
+				}
+			});
+		</script>
+	</div>
+	
+
+</body>
+</html>

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import usjt.br.Projeto_PI_2020.model.Leitura;
 import usjt.br.Projeto_PI_2020.service.LeituraService;
 
@@ -27,10 +26,29 @@ public class EstacaoController {
 
 	}
 	
+	@GetMapping("/lista")
+	public ModelAndView lista() {
+		ModelAndView mv = new ModelAndView("lista");
+		List<Leitura> leituras = leituraService.listarTodos();
+		mv.addObject(new Leitura());
+		mv.addObject("leituras", leituras);
+		return mv;
+	}
+	
 	@PostMapping("/incluir")
 	public String salvar(Leitura leitura) {
 		leitura.setTempo(LocalDateTime.now());
 		leituraService.salvar(leitura);
 		return "redirect:/incluir";
 	}
+	
+	@GetMapping("/grafico")
+	public ModelAndView grafico() {
+		ModelAndView mv = new ModelAndView("grafico");
+		List<Leitura> leituras = leituraService.listarTodos();
+		mv.addObject(new Leitura());
+		mv.addObject("leituras", leituras);
+		return mv;
+	}
+	
 }

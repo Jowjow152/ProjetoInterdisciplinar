@@ -51,6 +51,7 @@ public class Leitura implements Serializable{
 
 	public void setTempo(LocalDateTime tempo) {
 		this.tempo = tempo;
+		
 	}
 
 	@Override
